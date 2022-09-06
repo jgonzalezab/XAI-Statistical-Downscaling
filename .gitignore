@@ -1,0 +1,14 @@
+*.swp
+*.rda
+*.RData
+*.rds
+*.h5
+*.Rhistory
+*.nc4
+__pycache__
+*.ncml
+*.npy
+*.mp4
+*.out
+*.err
+experiments/model-interpretability/data/saliencyMaps/meanAcrossPoints/figs/CNN*
