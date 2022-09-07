@@ -11,4 +11,4 @@ __pycache__
 *.mp4
 *.out
 *.err
-ipynb_checkpoints/
+.ipynb_checkpoints
