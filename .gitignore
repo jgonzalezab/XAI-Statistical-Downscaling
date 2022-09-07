@@ -11,4 +11,4 @@ __pycache__
 *.mp4
 *.out
 *.err
-experiments/model-interpretability/data/saliencyMaps/meanAcrossPoints/figs/CNN*
+ipynb_checkpoints/
