@@ -26,7 +26,7 @@ download_X <- function(dataset, vars, lon, lat, years) {
  	 }) %>% makeMultiGrid()
 
   print(paste0('Saving as rda in ', DATA_PATH))
- 	save(x, file = paste0(DATA_PATH, 'x.rda'))
+  save(x, file = paste0(DATA_PATH, 'x.rda'))
 
 }
 
@@ -42,7 +42,7 @@ download_Y <- function(dataset, vars, lon, lat, years) {
  	 }) %>% makeMultiGrid()
 
   print(paste0('Saving as rda in ', DATA_PATH))
- 	save(y, file = paste0(DATA_PATH, 'y.rda'))
+  save(y, file = paste0(DATA_PATH, 'y.rda'))
 
 }
 
@@ -59,7 +59,7 @@ download_GCM_predictors_historical <- function(dataset, xRef, vars, lon, lat, ye
  	 			 }) %>% makeMultiGrid()
 
   print(paste0('Saving as rds in ', DATA_PATH))
- 	saveRDS(x_GCM, file = paste0(DATA_PATH, 'x_GCM_historical.rda'))
+  saveRDS(x_GCM, file = paste0(DATA_PATH, 'x_GCM_historical.rds'))
 
 }
 
@@ -76,7 +76,7 @@ download_GCM_predictors_future <- function(dataset, xRef, vars, lon, lat, years)
  	 			 }) %>% makeMultiGrid()
 
   print(paste0('Saving as rds in ', DATA_PATH))
- 	saveRDS(x_GCM, file = paste0(DATA_PATH, 'x_GCM_future.rda'))
+  saveRDS(x_GCM, file = paste0(DATA_PATH, 'x_GCM_future_', years[1], '_', years[length(years)], '.rds'))
 
 }
 
@@ -93,7 +93,7 @@ download_GCM_proyections_historical <- function(dataset, yRef, vars, lon, lat, y
  	 			 })
 
   print(paste0('Saving as rds in ', DATA_PATH))
- 	saveRDS(y_GCM, file = paste0(DATA_PATH, 'y_GCM_historical.rda'))
+  saveRDS(y_GCM, file = paste0(DATA_PATH, 'y_GCM_historical.rds'))
 
 }
 
@@ -110,6 +110,6 @@ download_GCM_proyections_future <- function(dataset, yRef, vars, lon, lat, years
  	 			 })
 
   print(paste0('Saving as rds in ', DATA_PATH))
- 	saveRDS(y_GCM, file = paste0(DATA_PATH, 'y_GCM_future.rda'))
+  saveRDS(y_GCM, file = paste0(DATA_PATH, 'y_GCM_future_', years[1], '_', years[length(years)], '.rds'))
 
 }

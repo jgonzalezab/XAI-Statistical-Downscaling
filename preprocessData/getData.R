@@ -6,7 +6,7 @@ source('./lib/downloadData.R')
 DATA_PATH <- './data/'
 
 # Log into UDG
-loginUDG('***', '***')
+loginUDG('gonzabad', '1pMareo')
 
 # Longitude and latitude values
 lon <- c(-165, -60)
@@ -33,7 +33,7 @@ years <- 1979:2008
 download_Y(dataset=dataset, vars=vars, lon=lon, lat=lat, years=years)
 
 # Download and save GCM predictors
-# It also interpolates GCM predictors to reanalysis resolution
+It also interpolates GCM predictors to reanalysis resolution
 
 load(paste0(DATA_PATH, 'x.rda'))
 
@@ -47,7 +47,6 @@ vars <- c('z@500','z@700','z@850','z@1000',
           'va@500','va@700','va@850','va@1000')
 
 years <- 1979:2005
-
 download_GCM_predictors_historical(dataset=dataset, xRef=x, vars=vars, lon=lon, lat=lat, years=years)
 
 # Future predictors
@@ -59,8 +58,13 @@ vars <- c('z@500','z@700','z@850','z@1000',
           'ua@500','ua@700','ua@850','ua@1000',
           'va@500','va@700','va@850','va@1000')
 
-years <- 2006:2100
+years <- 2006:2040
+download_GCM_predictors_future(dataset=dataset, xRef=x, vars=vars, lon=lon, lat=lat, years=years)
 
+years <- 2041:2070
+download_GCM_predictors_future(dataset=dataset, xRef=x, vars=vars, lon=lon, lat=lat, years=years)
+
+years <- 2071:2100
 download_GCM_predictors_future(dataset=dataset, xRef=x, vars=vars, lon=lon, lat=lat, years=years)
 
 # Download and save GCM proyections
@@ -74,7 +78,6 @@ dataset <- 'CMIP5-subset_EC-EARTH_r12i1p1_historical'
 vars <- c('tas')
 
 years <- 1979:2005
-
 download_GCM_proyections_historical(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
 
 # Future proyections
@@ -82,6 +85,11 @@ dataset <- 'CMIP5-subset_EC-EARTH_r12i1p1_rcp85'
 
 vars <- c('tas')
 
-years <- 2006:2100
+years <- 2006:2040
+download_GCM_proyections_future(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
 
+years <- 2041:2070
+download_GCM_proyections_future(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
+
+years <- 2071:2100
 download_GCM_proyections_future(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
