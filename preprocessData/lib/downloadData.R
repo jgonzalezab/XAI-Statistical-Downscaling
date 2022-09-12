@@ -30,19 +30,19 @@ download_X <- function(dataset, vars, lon, lat, years) {
 
 }
 
-download_Y <- function(dataset, vars, lon, lat, years) {
+download_Y <- function(dataset, lon, lat, years) {
 
-  y <- lapply(vars, function(var) {
-     print(paste0('Downloading variable ', var, ' of ', dataset, ' dataset'))
- 	   loadGridData(dataset = dataset,
- 	                var = var,
+  y <- loadGridData(dataset = dataset,
+ 	                var = 'tas',
  	                lonLim = lon,
  	                latLim = lat,
  	                years = years)
- 	 }) %>% makeMultiGrid()
 
   print(paste0('Saving as rda in ', DATA_PATH))
   save(y, file = paste0(DATA_PATH, 'y.rda'))
+
+  print(paste0('Saving as netCDF in ', DATA_PATH))
+  grid2nc(y, NetCDFOutFile=paste0(DATA_PATH, 'y.nc4'))
 
 }
 
@@ -52,7 +52,7 @@ download_GCM_predictors_historical <- function(dataset, xRef, vars, lon, lat, ye
          print(paste0('Downloading variable ', var, ' of ', dataset, ' dataset'))
  	   		 loadGridData(dataset = dataset,
  	                	 	var = var,
- 	                	  lonLim = lon,
+ 	                	    lonLim = lon,
  	                	 	latLim = lat,
  	                	 	years = years) %>%
  	   						interpGrid(new.coordinates = getGrid(xRef), method = 'bilinear')
@@ -69,7 +69,7 @@ download_GCM_predictors_future <- function(dataset, xRef, vars, lon, lat, years)
          print(paste0('Downloading variable ', var, ' of ', dataset, ' dataset'))
  	   		 loadGridData(dataset = dataset,
  	                	 	var = var,
- 	                	  lonLim = lon,
+ 	                	    lonLim = lon,
  	                	 	latLim = lat,
  	                	 	years = years) %>%
  	   						interpGrid(new.coordinates = getGrid(xRef), method = 'bilinear')
@@ -80,36 +80,31 @@ download_GCM_predictors_future <- function(dataset, xRef, vars, lon, lat, years)
 
 }
 
-download_GCM_proyections_historical <- function(dataset, yRef, vars, lon, lat, years) {
+download_GCM_proyections_historical <- function(dataset, yRef, lon, lat, years) {
 
-  y_GCM <- lapply(vars, function(var) {
-         print(paste0('Downloading variable ', var, ' of ', dataset, ' dataset'))
- 	   		 loadGridData(dataset = dataset,
- 	                	 	var = var,
- 	                	  lonLim = lon,
- 	                	 	latLim = lat,
- 	                	 	years = years) %>%
- 	   						interpGrid(new.coordinates = getGrid(yRef), method = 'bilinear')
- 	 			 })
+  y_GCM <- loadGridData(dataset = dataset,
+ 	                	var = 'tas',
+ 	                	lonLim = lon,
+ 	                	latLim = lat,
+ 	                	years = years) %>%
+ 	   					interpGrid(new.coordinates = getGrid(yRef), method = 'bilinear')
 
-  print(paste0('Saving as rds in ', DATA_PATH))
-  saveRDS(y_GCM, file = paste0(DATA_PATH, 'y_GCM_historical.rds'))
+  print(paste0('Saving as netCDF in ', DATA_PATH))
+  grid2nc(y_GCM, NetCDFOutFile=paste0(DATA_PATH, 'y_GCM_historical.nc4'))
 
 }
 
-download_GCM_proyections_future <- function(dataset, yRef, vars, lon, lat, years) {
+download_GCM_proyections_future <- function(dataset, yRef, lon, lat, years) {
 
-  y_GCM <- lapply(vars, function(var) {
-         print(paste0('Downloading variable ', var, ' of ', dataset, ' dataset'))
- 	   		 loadGridData(dataset = dataset,
- 	                	 	var = var,
- 	                	  lonLim = lon,
- 	                	 	latLim = lat,
- 	                	 	years = years) %>%
- 	   						interpGrid(new.coordinates = getGrid(yRef), method = 'bilinear')
- 	 			 })
+  y_GCM <- loadGridData(dataset = dataset,
+ 	                	var = 'tas',
+ 	                	lonLim = lon,
+ 	                	latLim = lat,
+ 	                	years = years) %>%
+ 	   					interpGrid(new.coordinates = getGrid(yRef), method = 'bilinear')
 
-  print(paste0('Saving as rds in ', DATA_PATH))
-  saveRDS(y_GCM, file = paste0(DATA_PATH, 'y_GCM_future_', years[1], '_', years[length(years)], '.rds'))
+  print(paste0('Saving as netCDF in ', DATA_PATH))
+  grid2nc(y_GCM,
+  		  NetCDFOutFile=paste0(DATA_PATH, 'y_GCM_future_', years[1], '_', years[length(years)], '.nc4'))
 
 }

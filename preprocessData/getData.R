@@ -27,13 +27,12 @@ download_X(dataset=dataset, vars=vars, lon=lon, lat=lat, years=years)
 
 # Download and save observation data (predictand)
 dataset <- 'PIK_Obs-EWEMBI'
-vars <- c('tas')
 years <- 1979:2008
 
-download_Y(dataset=dataset, vars=vars, lon=lon, lat=lat, years=years)
+download_Y(dataset=dataset, lon=lon, lat=lat, years=years)
 
 # Download and save GCM predictors
-It also interpolates GCM predictors to reanalysis resolution
+# It also interpolates GCM predictors to reanalysis resolution
 
 load(paste0(DATA_PATH, 'x.rda'))
 
@@ -75,21 +74,17 @@ load(paste0(DATA_PATH, 'y.rda'))
 # Historical proyections
 dataset <- 'CMIP5-subset_EC-EARTH_r12i1p1_historical'
 
-vars <- c('tas')
-
 years <- 1979:2005
-download_GCM_proyections_historical(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
+download_GCM_proyections_historical(dataset=dataset, yRef=y, lon=lon, lat=lat, years=years)
 
 # Future proyections
 dataset <- 'CMIP5-subset_EC-EARTH_r12i1p1_rcp85'
 
-vars <- c('tas')
-
 years <- 2006:2040
-download_GCM_proyections_future(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
+download_GCM_proyections_future(dataset=dataset, yRef=y, lon=lon, lat=lat, years=years)
 
 years <- 2041:2070
-download_GCM_proyections_future(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
+download_GCM_proyections_future(dataset=dataset, yRef=y, lon=lon, lat=lat, years=years)
 
 years <- 2071:2100
-download_GCM_proyections_future(dataset=dataset, yRef=y, vars=vars, lon=lon, lat=lat, years=years)
+download_GCM_proyections_future(dataset=dataset, yRef=y, lon=lon, lat=lat, years=years)

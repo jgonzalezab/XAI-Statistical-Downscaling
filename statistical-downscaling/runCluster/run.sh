@@ -4,7 +4,7 @@
 export CONTAINER="deep-nm"
 
 # Job config
-export JOB_NAME="train_CNN_10_stand"
+export JOB_NAME="train_CNN_UNET"
 export JOB2RUN="./job.sh"
 export DIR_TO_MOUNT="/gpfs/projects/meteo/WORK/gonzabad/XAI-Statistical-Downscaling"
 

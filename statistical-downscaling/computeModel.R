@@ -31,7 +31,7 @@ for (device in gpu_devices) {
 }
 
 # Whether to standardize the predictand
-predictandStand <- TRUE
+predictandStand <- FALSE
 
 # Load X and Y
 load(paste0(DATA_PATH, 'x.rda'))
@@ -53,8 +53,8 @@ yMask <- yMask$Data[1, , ]
 yMask <- yMask * 0 + 1
 
 # Train and save a model on the data
-modelName <- 'CNN10'
-connections <- c('conv', 'dense')
+modelName <- 'CNN_UNET'
+connections <- c('conv', 'conv')
 
 # trainCNN(xTrain=xTrain, yTrain=yTrain, yMask=yMask,
 #          modelName=modelName,

@@ -5,7 +5,7 @@
 *.h5
 *.Rhistory
 *.nc4
-__pycache__
+.__pycache__
 *.ncml
 *.npy
 *.mp4
@@ -13,3 +13,4 @@ __pycache__
 *.err
 .ipynb_checkpoints
 .cluster-log
+.dask-work-space
