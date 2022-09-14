@@ -56,30 +56,30 @@ yMask <- yMask * 0 + 1
 modelName <- 'CNN_UNET'
 connections <- c('conv', 'conv')
 
-# trainCNN(xTrain=xTrain, yTrain=yTrain, yMask=yMask,
-#          modelName=modelName,
-#          connections=connections,
-#          predictandStand=predictandStand)
+trainCNN(xTrain=xTrain, yTrain=yTrain, yMask=yMask,
+         modelName=modelName,
+         connections=connections,
+         predictandStand=predictandStand)
 
 # Compute predictions on training set
-# predictTrain(xTrain=xTrain,
-#              yTrain=yTrain,
-#              modelName=modelName,
-#              predictandStand=predictandStand)
+predictTrain(xTrain=xTrain,
+             yTrain=yTrain,
+             modelName=modelName,
+             predictandStand=predictandStand)
 
 # Compute predictions on test set
-# predictTest(xTrain=xTrain,
-#             yTrain=yTrain,
-#             xTest=xTest,
-#             yTest=yTest,
-#             modelName=modelName,
-#             predictandStand=predictandStand)
+predictTest(xTrain=xTrain,
+            yTrain=yTrain,
+            xTest=xTest,
+            yTest=yTest,
+            modelName=modelName,
+            predictandStand=predictandStand)
 
 # Compute predictions on historical GCM
-# predictGCM_Hist(xTrain=xTrain,
-#                 yTrain=yTrain,
-#                 modelName=modelName,
-#                 predictandStand=predictandStand)
+predictGCM_Hist(xTrain=xTrain,
+                yTrain=yTrain,
+                modelName=modelName,
+                predictandStand=predictandStand)
 
 # Compute predictions on future GCM
 predictGCM_Fut(xTrain=xTrain,
