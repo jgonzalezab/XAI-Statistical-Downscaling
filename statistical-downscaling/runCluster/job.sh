@@ -12,7 +12,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/
 # Run job
 udocker run --hostenv --hostauth --user=$USER \
 -v $DIR_TO_MOUNT:/experiment/ $CONTAINER \
-/bin/bash -c 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/;
+/bin/bash -c "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/;
               export _JAVA_OPTIONS="-Xmx10g";
               cd ./statistical-downscaling/;
-              Rscript computeModel.R'
+              Rscript $R_SCRIPT"

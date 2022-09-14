@@ -11,6 +11,8 @@
 *.mp4
 *.out
 *.err
+*.csv
+*.pyc
 .ipynb_checkpoints
 .cluster-log
 .dask-work-space

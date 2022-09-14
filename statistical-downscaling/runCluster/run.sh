@@ -11,6 +11,9 @@ export DIR_TO_MOUNT="/gpfs/projects/meteo/WORK/gonzabad/XAI-Statistical-Downscal
 # Create slurm-log folder if it does not already exist
 mkdir -p "${DIR_TO_MOUNT}/statistical-downscaling/cluster-log/"
 
+# R script to run (computeModel.R or computeModel_OF.R)
+export R_SCRIPT='computeModel_OF.R'
+
 # SLURM parameters
 SLURM_PARAMS="--job-name=${JOB_NAME} --partition=wngpu --gres=gpu:2
               --time=72:00:00 --mem-per-cpu=128000 --output=${DIR_TO_MOUNT}/statistical-downscaling/cluster-log/${JOB_NAME}.out
