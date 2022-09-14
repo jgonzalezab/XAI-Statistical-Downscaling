@@ -6,7 +6,7 @@ source('./lib/downloadData.R')
 DATA_PATH <- './data/'
 
 # Log into UDG
-loginUDG('gonzabad', '1pMareo')
+loginUDG('***', '***')
 
 # Longitude and latitude values
 lon <- c(-165, -60)

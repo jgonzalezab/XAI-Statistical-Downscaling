@@ -53,7 +53,6 @@ allVars = ['z@500', 'z@700', 'z@850', 'z@1000',
 nRows = len(models)
 
 fig = plt.figure(figsize = (30, 20))
-# fig = plt.figure(figsize = (30, 80))
 outer = gridspec.GridSpec(nRows, 1,
                           wspace = -0.9, hspace = -0.1)
 

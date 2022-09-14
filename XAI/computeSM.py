@@ -25,10 +25,14 @@ os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 modelName = sys.argv[1]
 
 # Map to the proper topology
-if modelName == 'CNN10_stand':
+if 'CNN10' in modelName:
     modelTopology = 'CNN10'
+elif 'CNNPan' in modelName:
+    modelTopology = 'CNNPan'
+elif 'CNN_UNET' in modelName:
+    modelTopology = 'CNN_UNET'
 else:
-    modelTopology = modelName
+    raise ValueError('Please provide a valid model')
 
 # Neuron from which saliency maps are computed
 neuronIdx = sys.argv[2]
