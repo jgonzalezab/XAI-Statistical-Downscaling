@@ -1,7 +1,7 @@
 import glob
 import xarray as xr
 
-# Target (Daymet025, Daymet05, EWEMBI05)
+# Load target
 def loadTarget(years, chunks = None):
 
     DATA_PATH = '../preprocessData/data/'
@@ -11,7 +11,7 @@ def loadTarget(years, chunks = None):
 
     return y
 
-# Prediction over train set
+# Load prediction over train set
 def loadTrainPred(model, chunks = None):
 
     DATA_PATH = '../statistical-downscaling/data/'
@@ -21,7 +21,7 @@ def loadTrainPred(model, chunks = None):
 
     return yPred
 
-# Prediction over test set
+# Load prediction over test set
 def loadTestPred(model, chunks = None):
 
     DATA_PATH = '../statistical-downscaling/data/'
@@ -31,7 +31,7 @@ def loadTestPred(model, chunks = None):
 
     return yPred
 
-# Prediction over historical GCM
+# Load prediction over historical GCM
 def loadHistoricalPredProj(model, years ,
                            chunks = None):
 
@@ -43,7 +43,7 @@ def loadHistoricalPredProj(model, years ,
 
     return yProj
 
-# Prediction over future GCM
+# Load prediction over future GCM
 def loadFuturePredProj(model, years, chunks = None):
 
     DATA_PATH = '../statistical-downscaling/data/'
@@ -65,7 +65,7 @@ def loadFuturePredProj(model, years, chunks = None):
 
     return yProj
 
-# Projection of GCM on historical period
+# Load projection of GCM on historical period
 def loadHistProj(years, chunks = None):
 
     DATA_PATH = '../preprocessData/data/'
@@ -76,7 +76,7 @@ def loadHistProj(years, chunks = None):
     
     return yProj
 
-# Projection of GCM on future period
+# Load projection of GCM on future period
 def loadFutureProj(years,
                    chunks = None):
 

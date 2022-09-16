@@ -5,7 +5,7 @@ source('./lib/downloadData.R')
 # PATHS
 DATA_PATH <- './data/'
 
-# Log into UDG
+# Login UDG
 loginUDG('***', '***')
 
 # Longitude and latitude values

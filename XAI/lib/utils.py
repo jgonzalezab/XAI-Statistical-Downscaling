@@ -14,8 +14,10 @@ import datetime as dt
 import glob
 from tqdm import tqdm
 
+# PATHS
 XAI_PATH = './data/'
 
+# Get the proper neuron index based on the predictand map
 def getNeuronIdx(neuron):
 
     neuron = int(neuron)
@@ -28,6 +30,7 @@ def getNeuronIdx(neuron):
         print('Please provide a valid neuron index')
         return None
 
+# Normalize the saliency maps
 def normalizeSM(saliencyMaps):
 
     for idx in range(saliencyMaps.shape[0]):
@@ -38,6 +41,7 @@ def normalizeSM(saliencyMaps):
 
     return saliencyMaps
 
+# Compute and save the saliency maps
 def compositeTrainSet(modelObj, modelName, neuronIdx, xData):
 
     # Get neuron index for CNNDoury

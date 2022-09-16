@@ -1,3 +1,4 @@
+# Remove the previously applied standardization taking as reference meanGRid and stdGrid
 deStandardize <- function(grid, meanGrid, stdGrid) {
 
     for (i in 1:dim(grid$Data)[1]) {
@@ -8,6 +9,7 @@ deStandardize <- function(grid, meanGrid, stdGrid) {
 
 }
 
+# Scaling delta mapping transformation
 scalingDeltaMapping <- function(grid, base, ref) {
 
     # Remove the seasonal trend
@@ -37,6 +39,7 @@ scalingDeltaMapping <- function(grid, base, ref) {
     return(grid_corrected)
 }
 
+# Compute predictions on the training set (reanalysis predictors)
 predictTrain <- function(xTrain, yTrain, modelName, predictandStand) {
 
     # Filter days with NaNs or NA
@@ -98,6 +101,7 @@ predictTrain <- function(xTrain, yTrain, modelName, predictandStand) {
 
 }
 
+# Compute predictions on the test set (reanalysis predictors)
 predictTest <- function(xTrain, yTrain, xTest, yTest,
                         modelName, predictandStand) {
 
@@ -160,6 +164,7 @@ predictTest <- function(xTrain, yTrain, xTest, yTest,
 
 }
 
+# Compute predictions on the GCM predictors over the historical period
 predictGCM_Hist <- function(xTrain, yTrain, modelName, predictandStand) {
 
     # Filter days with NaNs or NA
@@ -191,7 +196,7 @@ predictGCM_Hist <- function(xTrain, yTrain, modelName, predictandStand) {
     # Load GCM historical data
     x_GCM_Hist <- readRDS(paste0(DATA_PATH, 'x_GCM_historical.rds'))
 
-    # Bias correct the GCM predictors
+    # Apply transformation to GCM predictors
     x_GCM_Hist_BC <- scalingDeltaMapping(grid=x_GCM_Hist, base=x_GCM_Hist, ref=xTrain)
 
     # Standardize
@@ -227,6 +232,7 @@ predictGCM_Hist <- function(xTrain, yTrain, modelName, predictandStand) {
 
 }
 
+# Compute predictions on the GCM predictors over future periods
 predictGCM_Fut <- function(xTrain, yTrain, modelName, predictandStand) {
 
     # Filter days with NaNs or NA
@@ -277,7 +283,7 @@ predictGCM_Fut <- function(xTrain, yTrain, modelName, predictandStand) {
         # Load GCM future data
         x_GCM_Fut <- readRDS(paste0(DATA_PATH, 'x_GCM_future_', period, '.rds'))
 
-        # Bias correct the GCM predictors
+        # Apply transformation to GCM predictors
         x_GCM_Fut_BC <- scalingDeltaMapping(grid=x_GCM_Fut, base=x_GCM_Hist, ref=xTrain)
 
         # Standardize

@@ -54,6 +54,7 @@ yMask <- yMask * 0 + 1
 
 # Train and save a model on the data
 # In this case only models for epochs 800 and 3600 are saved
+# The model is trained for 5000 epochs (overfitted)
 modelName <- 'CNN_UNET'
 connections <- c('conv', 'conv')
 

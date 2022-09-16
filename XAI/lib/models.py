@@ -1,8 +1,10 @@
 import keras
 from keras import layers
 
+# Load a specific model
 def load_model(model, input_shape, output_shape):
 
+    # DeepESD
     if model == 'CNN10':
 
         inputs = keras.Input(shape = input_shape)
@@ -18,6 +20,7 @@ def load_model(model, input_shape, output_shape):
 
         model = keras.Model(inputs = inputs, outputs = outputs)
 
+    # CNNPan
     if model == 'CNNPan':
 
         inputs = keras.Input(shape = input_shape)
@@ -41,6 +44,7 @@ def load_model(model, input_shape, output_shape):
 
         model = keras.Model(inputs = inputs, outputs = outputs)
 
+    # CNN_UNET
     if model == 'CNN_UNET':
 
         inputs = keras.Input(shape = input_shape)

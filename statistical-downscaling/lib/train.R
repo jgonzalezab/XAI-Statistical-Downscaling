@@ -1,3 +1,4 @@
+# Mask observations (land gridpoints)
 applyMask <- function(grid, mask) {
 
   for (i in 1:dim(grid$Data)[1]) {
@@ -8,6 +9,7 @@ applyMask <- function(grid, mask) {
 
 }
 
+# Train and save a model
 trainCNN <- function(xTrain, yTrain, yMask,
                      modelName,
                      connections,
@@ -75,6 +77,7 @@ trainCNN <- function(xTrain, yTrain, yMask,
 
 }
 
+# Train and save a model for epochs 800 and 3600 (overfitted training)
 trainCNN_OF <- function(xTrain, yTrain, yMask,
                         modelName,
                         connections,

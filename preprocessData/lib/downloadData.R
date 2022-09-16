@@ -14,6 +14,7 @@ library(downscaleR.keras)
 library(loadeR.2nc)
 library(reticulate)
 
+# Download reanalysis data
 download_X <- function(dataset, vars, lon, lat, years) {
 
   x <- lapply(vars, function(var) {
@@ -30,6 +31,7 @@ download_X <- function(dataset, vars, lon, lat, years) {
 
 }
 
+# Download observation data
 download_Y <- function(dataset, lon, lat, years) {
 
   y <- loadGridData(dataset = dataset,
@@ -46,6 +48,7 @@ download_Y <- function(dataset, lon, lat, years) {
 
 }
 
+# EC-EARTH predictors in the historical period
 download_GCM_predictors_historical <- function(dataset, xRef, vars, lon, lat, years) {
 
   x_GCM <- lapply(vars, function(var) {
@@ -63,6 +66,7 @@ download_GCM_predictors_historical <- function(dataset, xRef, vars, lon, lat, ye
 
 }
 
+# EC-EARTH predictors in future periods
 download_GCM_predictors_future <- function(dataset, xRef, vars, lon, lat, years) {
 
   x_GCM <- lapply(vars, function(var) {
@@ -80,6 +84,7 @@ download_GCM_predictors_future <- function(dataset, xRef, vars, lon, lat, years)
 
 }
 
+# EC-EARTH proyections in the historical period
 download_GCM_proyections_historical <- function(dataset, yRef, lon, lat, years) {
 
   y_GCM <- loadGridData(dataset = dataset,
@@ -94,6 +99,7 @@ download_GCM_proyections_historical <- function(dataset, yRef, lon, lat, years) 
 
 }
 
+# EC-EARTH proyections in future periods
 download_GCM_proyections_future <- function(dataset, yRef, lon, lat, years) {
 
   y_GCM <- loadGridData(dataset = dataset,

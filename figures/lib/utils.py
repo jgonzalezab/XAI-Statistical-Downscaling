@@ -21,15 +21,19 @@ DATA_PATH = '../preprocessData/data/'
 DATA_METRICS_PATH = './data/'
 FIGS_PATH = './figs/'
 
+# P02
 def P02(x):
         return np.nanquantile(x, 0.02)
 
+# Mean
 def mean(x):
     return np.nanmean(x)
 
+# P98
 def P98(x):
         return np.nanquantile(x, 0.98)
 
+# Compute bias in P02
 def BiasP02(y, x):
 
     def P02(x):
@@ -42,6 +46,7 @@ def BiasP02(y, x):
 
     return compMetric
 
+# Compute bias in mean
 def BiasMean(y, x):
 
     def mean(x):
@@ -54,6 +59,7 @@ def BiasMean(y, x):
 
     return compMetric
 
+# Compute bias in P98
 def BiasP98(y, x):
 
     def P98(x):
@@ -66,9 +72,11 @@ def BiasP98(y, x):
 
     return compMetric
 
+# Standard deviation
 def standDev(x):
     return np.nanstd(x)
 
+# Apply land mask
 def applyMask(grid):
 
     mask = xr.open_dataset(DATA_PATH + 'yMask.nc4', chunks = None)
@@ -81,6 +89,7 @@ def applyMask(grid):
     maskedGrid = da.ma.masked_array(grid, mask = mask)
     return maskedGrid
 
+# Mask numpy array
 def applyMaskNumpy(grid):
 
     mask = xr.open_dataset(DATA_PATH + 'yMask.nc4', chunks = None)
@@ -95,6 +104,7 @@ def applyMaskNumpy(grid):
     maskedGrid = grid * mask
     return maskedGrid
 
+# Mask specific regions
 def maskRegions(grid, regions):
 
     y = loadData.loadTarget(years = slice('1980-01-01', '1980-01-02'))
@@ -111,6 +121,7 @@ def maskRegions(grid, regions):
 
     return grid
 
+# Compute mean over the different IPCC regions
 def computeRegionMeans(grid, regions):
 
     y = loadData.loadTarget(years = slice('1980-01-01', '1980-01-02'))
@@ -129,6 +140,7 @@ def computeRegionMeans(grid, regions):
 
     return dictMeans
 
+# Intitate an empty dataframe for better plotting
 def initDF(models, regions):
 
     regionsRepeated = np.repeat(regions, len(models))
@@ -140,6 +152,7 @@ def initDF(models, regions):
 
     return finalDF
 
+# Compute mean over the different IPCC regions for the time series plot
 def computeRegionMean_TS(grid, region):
 
     y = loadData.loadTarget(years = slice('1980-01-01', '1980-01-02'))

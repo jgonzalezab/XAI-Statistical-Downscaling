@@ -1,46 +1,50 @@
+# Load a specific model
 load_model <- function(model, input_shape, output_shape) {
 
     switch (model,
 
+          # DeepESD
     	  CNN10 = {
 
-           inputs <- layer_input(shape = input_shape)
-           x = inputs
-           l1 = layer_conv_2d(x ,filters = 50, kernel_size = c(3,3), activation = 'relu', padding = 'same')
-           l2 = layer_conv_2d(l1,filters = 25, kernel_size = c(3,3), activation = 'relu', padding = 'same')
-           l3 = layer_conv_2d(l2,filters = 10, kernel_size = c(3,3), activation = 'relu', padding = 'same')
-           l4 = layer_flatten(l3)
+              inputs <- layer_input(shape = input_shape)
+              x = inputs
+              l1 = layer_conv_2d(x ,filters = 50, kernel_size = c(3,3), activation = 'relu', padding = 'same')
+              l2 = layer_conv_2d(l1,filters = 25, kernel_size = c(3,3), activation = 'relu', padding = 'same')
+              l3 = layer_conv_2d(l2,filters = 10, kernel_size = c(3,3), activation = 'relu', padding = 'same')
+              l4 = layer_flatten(l3)
 
-           outputs = layer_dense(l4, units = output_shape)
+              outputs = layer_dense(l4, units = output_shape)
 
-           model <- keras_model(inputs = inputs, outputs = outputs)},
+              model <- keras_model(inputs = inputs, outputs = outputs)},
 
+           # CNNPan
            CNNPan = { 
 
-            inputs <- layer_input(shape = input_shape)
-            x = inputs
+               inputs <- layer_input(shape = input_shape)
+               x = inputs
 
-            l1 = layer_conv_2d(x ,filters = 15, kernel_size = c(4, 4), activation = 'relu',
-                               padding = 'valid')
-            l1_new = layer_conv_2d(l1 ,filters = 20, kernel_size = c(4, 4), activation = 'relu',
-                                   padding = 'same')
-            l2 = layer_conv_2d(l1_new ,filters = 20, kernel_size = c(4, 4), activation = 'relu',
-                               padding = 'valid')
+               l1 = layer_conv_2d(x ,filters = 15, kernel_size = c(4, 4), activation = 'relu',
+                                  padding = 'valid')
+               l1_new = layer_conv_2d(l1 ,filters = 20, kernel_size = c(4, 4), activation = 'relu',
+                                      padding = 'same')
+               l2 = layer_conv_2d(l1_new ,filters = 20, kernel_size = c(4, 4), activation = 'relu',
+                                  padding = 'valid')
 
-            l3 = layer_conv_2d(l2 ,filters = 20, kernel_size = c(4, 4), activation = 'relu',
-                               padding = 'valid')
+               l3 = layer_conv_2d(l2 ,filters = 20, kernel_size = c(4, 4), activation = 'relu',
+                                  padding = 'valid')
 
-            l3_new = layer_conv_2d(l3 ,filters = 40, kernel_size = c(4, 4), activation = 'relu',
-                                   padding = 'same')
+               l3_new = layer_conv_2d(l3 ,filters = 40, kernel_size = c(4, 4), activation = 'relu',
+                                      padding = 'same')
 
-            l4 = layer_flatten(l3_new)
+               l4 = layer_flatten(l3_new)
 
-            d1 = layer_dense(l4, units = round(output_shape / 2))
+               d1 = layer_dense(l4, units = round(output_shape / 2))
 
-            outputs = layer_dense(d1, units = output_shape)
+               outputs = layer_dense(d1, units = output_shape)
 
-            model <- keras_model(inputs = inputs, outputs = outputs)},
+               model <- keras_model(inputs = inputs, outputs = outputs)},
 
+        # CNN_UNET
         CNN_UNET = {
 
               inputs <- layer_input(shape = input_shape)
