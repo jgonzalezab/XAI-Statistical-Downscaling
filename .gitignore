@@ -5,6 +5,7 @@
 *.h5
 *.Rhistory
 *.nc4
+!*yMask.nc4
 .__pycache__
 *.ncml
 *.npy
