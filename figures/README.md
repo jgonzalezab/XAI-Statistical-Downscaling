@@ -1,0 +1,2 @@
+### Generate figures
+This folder contains all the scripts to generate the figures shown in the paper. We rely on several python libraries like [xarray](https://github.com/pydata/xarray), [Dask](https://github.com/dask/dask) and [Matplotlib](https://github.com/matplotlib/matplotlib). Note that in order to successfully generate these figures it is necessary that all the previous phases have been executed correctly.
